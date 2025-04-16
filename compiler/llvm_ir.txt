@@ -1,0 +1,35 @@
+declare i32 @getint()
+declare void @putint(i32)
+declare void @putch(i32)
+declare void @putstr(i8*)
+
+define dso_local i32 @main() {
+    %v1 = alloca i32
+    store i32 0, i32* %v1
+    br label %v2
+
+v2:
+    br label %v3
+
+v3:
+    %v7 = load i32, i32* %v1
+    %v8 = icmp sle i32 %v7, 5
+    %v9 = zext i1 %v8 to i32
+    %v10 = icmp ne i32 0, %v9
+    br i1 %v10, label %v4, label %v5
+    br label %v3
+
+v4:
+    br label %v5
+    br label %v6
+
+v6:
+    %v12 = load i32, i32* %v1
+    %v13 = load i32, i32* %v1
+    %v14 = add i32 %v13, 1
+    store i32 %v14, i32* %v1
+    br label %v3
+
+v5:
+    ret i32 0
+}
